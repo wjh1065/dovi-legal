@@ -1,0 +1,11 @@
+/* The handheld's colors: each theme recolors the page around it too. berry is the default (the :root of each
+   page). Shared by the game, the visit page and the square. The shop's colors are listed in js/shop.js, and their
+   pictures are built by tools/build_shell.py. */
+[data-theme="soda"] { --tint: #e1f2ff; --tint-2: #cce8ff; --accent: #2f9fe8; --shell: #4cb8ff; --bezel: #33405a; --btn: #ffcc33; --btn-light: #ffe38f; }
+[data-theme="melon"] { --tint: #eafbdc; --tint-2: #d9f4c2; --accent: #4f9f2a; --shell: #8fdc5a; --bezel: #374a3a; --btn: #ff5a5a; --btn-light: #ff9d9d; }
+[data-theme="grape"] { --tint: #f1e8ff; --tint-2: #e3d3ff; --accent: #7a4fc4; --shell: #9a6fd1; --bezel: #3b3458; --btn: #ffc93c; --btn-light: #ffe38f; }
+[data-theme="lemon"] { --tint: #fff8d6; --tint-2: #ffefad; --accent: #a87000; --shell: #ffd84d; --bezel: #4a4436; --btn: #ff5c9d; --btn-light: #ff9cc4; }
+[data-theme="apricot"] { --tint: #ffeadb; --tint-2: #ffd9bf; --accent: #d85a1c; --shell: #ff9a5c; --bezel: #46362e; --btn: #4cb8ff; --btn-light: #9fdcff; }
+[data-theme="mint"] { --tint: #defaf4; --tint-2: #c4f2e8; --accent: #178a77; --shell: #5fd6c0; --bezel: #2f4744; --btn: #ff8a3d; --btn-light: #ffb884; }
+[data-theme="cream"] { --tint: #faf5e8; --tint-2: #f1e8d0; --accent: #8f6d24; --shell: #f4ead2; --bezel: #4a4436; --btn: #e0457b; --btn-light: #ff9cc4; }
+[data-theme="midnight"] { --tint: #e6e8f5; --tint-2: #d3d7ee; --accent: #4a56a8; --shell: #2e3350; --bezel: #14162a; --btn: #ffc93c; --btn-light: #ffe38f; }

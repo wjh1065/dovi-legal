@@ -1,0 +1,134 @@
+/* The small pages outside the game (a friend's visit, the memorial square): one column, a form or a list,
+   scrolling like any page. The game's style.css is not used here: its phone rules lock scrolling. */
+:root {
+  --ink: #3d2f45;
+  --line: color-mix(in srgb, var(--ink) 46%, var(--shell, #ff5c9d));
+  --edge: color-mix(in srgb, var(--ink) 26%, transparent);
+  --muted: #6d6376;
+  --paper: #fffdf7;
+  --tint: #ffe3ee;
+  --tint-2: #ffd2e3;
+  --accent: #ff5c9d;
+  --lamp: #f2c14e;
+  color-scheme: only light; /* phones in dark mode (Chrome, Samsung, in-app browsers) keep this look, not a darkened copy */
+}
+/* The other themes are in themes.css */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  background: var(--tint);
+  background-image: radial-gradient(var(--tint-2) 2px, transparent 2px);
+  background-size: 18px 18px;
+  font-family: "Galmuri11", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+main { max-width: 420px; margin: 0 auto; padding: 20px 16px 40px; }
+.brand { margin: 0 0 14px; font-size: 14px; color: var(--muted); letter-spacing: 1px; }
+.brand a { color: inherit; text-decoration: none; }
+/* The way back to one's own pet, for a visitor who has one */
+.back-home { display: inline-block; margin: 0 0 12px; padding: 5px 12px; background: var(--paper); color: var(--ink); border: 2px solid var(--line); box-shadow: 0 2px 0 var(--edge); font-size: 14px; text-decoration: none; }
+.back-home[hidden] { display: none; }
+.back-home:active { transform: translate(2px, 2px); box-shadow: none; }
+h1 { margin: 0; font-size: 26px; line-height: 1.3; }
+.sub { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+.intro { margin: 8px 0 0; font-size: 15px; }
+
+.device { position: relative; margin: 22px auto 8px; image-rendering: pixelated; }
+.device img, .device canvas { position: absolute; display: block; image-rendering: pixelated; }
+.speech {
+  position: absolute; z-index: 2; transform: translate(-50%, calc(-100% - 10px));
+  max-width: 240px; width: max-content; padding: 6px 12px 7px;
+  background: var(--paper); border: 2px solid var(--line); border-radius: 14px;
+  font-size: 15px; line-height: 1.35; animation: pop 260ms cubic-bezier(.2, 1.4, .4, 1);
+}
+.speech[hidden] { display: none; }
+.speech::after {
+  content: ""; position: absolute; left: 50%; bottom: -11px; width: 12px; height: 12px;
+  background: var(--paper); border-right: 2px solid var(--line); border-bottom: 2px solid var(--line);
+  transform: translateX(-50%) rotate(45deg);
+}
+@keyframes pop { from { transform: translate(-50%, calc(-100% - 4px)) scale(.6); opacity: 0; } }
+
+.card { margin-top: 18px; padding: 18px 16px; background: var(--paper); border: 2px solid var(--line); box-shadow: 0 3px 0 var(--edge); }
+.card h2 { margin: 0 0 12px; font-size: 18px; }
+.card p { margin: 0; }
+.gifts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+.gift {
+  display: grid; justify-items: center; gap: 4px; padding: 10px 4px 8px;
+  background: var(--paper); border: 2px solid var(--line); font: inherit; font-size: 14px; color: var(--ink); cursor: pointer;
+}
+.gift img { width: 40px; height: 40px; image-rendering: pixelated; }
+.gift[aria-pressed="true"] { background: var(--lamp); box-shadow: inset 0 -4px 0 rgb(0 0 0 / .12); }
+label { display: block; margin: 10px 0 4px; font-size: 14px; color: var(--muted); }
+input {
+  width: 100%; min-height: 44px; padding: 6px 10px; border: 2px solid var(--line); background: #fff;
+  font: inherit; font-size: 16px; color: var(--ink);
+}
+.primary {
+  display: block; width: 100%; margin-top: 16px; min-height: 50px; padding: 8px 14px;
+  background: var(--accent); color: #fff; border: 2px solid var(--line); box-shadow: 0 3px 0 var(--edge);
+  font: inherit; font-size: 18px; font-weight: 700; text-align: center; text-decoration: none; cursor: pointer;
+}
+.primary:active { transform: translate(2px, 2px); box-shadow: 0 2px 0 var(--edge); }
+.primary:disabled { opacity: .6; cursor: wait; }
+.hint { margin-top: 10px !important; font-size: 13px; color: var(--muted); }
+.hint a, .sub a { color: var(--ink); text-underline-offset: 3px; }
+.error { margin-top: 10px !important; font-size: 14px; color: #c2335a; }
+.error:empty { display: none; }
+.bring {
+  display: flex; align-items: center; gap: 10px; margin: 0 0 6px; padding: 8px 10px;
+  border: 2px dashed var(--line); background: #fff; color: var(--ink); font-size: 15px; cursor: pointer;
+}
+.bring input { width: 20px; height: 20px; min-height: 0; margin: 0; accent-color: var(--accent); }
+.bring canvas { width: 36px; height: 36px; image-rendering: pixelated; }
+.bond { display: inline-block; margin: 0 0 10px !important; padding: 2px 10px; background: var(--lamp); border: 2px solid var(--line); font-size: 14px; }
+.scene { margin: 0 0 12px; padding-left: 1.3em; }
+.scene li { margin: 2px 0; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 3px solid var(--line); outline-offset: 2px; }
+
+/* The memorial square: one grave per card */
+.graves { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 14px; }
+.grave { display: grid; grid-template-columns: 72px 1fr; gap: 12px; align-items: start; padding: 14px; background: var(--paper); border: 2px solid var(--line); box-shadow: 0 3px 0 var(--edge); }
+.grave.here { outline: 4px solid var(--lamp); outline-offset: 2px; }
+.grave canvas { width: 72px; height: 72px; image-rendering: pixelated; }
+.grave h2 { margin: 0; font-size: 17px; line-height: 1.35; }
+.grave .career { margin: 0; font-size: 13px; color: var(--accent); }
+.grave .epitaph { margin: 4px 0 0; font-size: 14px; }
+.grave .lived { margin: 2px 0 0; font-size: 12px; color: var(--muted); }
+.grave details { grid-column: 1 / -1; font-size: 14px; }
+.grave summary { cursor: pointer; font-size: 14px; }
+.grave details p { margin: 8px 0 0; line-height: 1.9; white-space: pre-line; }
+.grave .foot { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; }
+.flower {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 3px 12px 3px 8px;
+  background: var(--paper); border: 2px solid var(--line); box-shadow: 0 3px 0 var(--edge);
+  font: inherit; font-size: 14px; color: var(--ink); cursor: pointer;
+}
+.flower img { width: 22px; height: 22px; image-rendering: pixelated; }
+.flower:active { transform: translate(2px, 2px); box-shadow: 0 1px 0 var(--edge); }
+.flower[aria-pressed="true"] { background: var(--tint-2); }
+.foot small { font-size: 12px; color: var(--muted); }
+/* 한마디: what visitors say at a grave */
+.grave details.notes { margin-top: 2px; }
+.note-list { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 6px; }
+.note-list li { padding: 6px 9px 7px; border: 2px solid var(--line); background: var(--tint, #fff4f8); }
+.note-list li.none { border-style: dashed; background: none; font-size: 13px; color: var(--muted); }
+.note-list .who { display: flex; align-items: center; gap: 7px; margin: 0; font-size: 13px; line-height: 1.5; }
+.note-list .who b { font-weight: 400; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.note-list .who small { flex: none; font-size: 12px; color: var(--muted); }
+.grave details .note-list p.said { margin: 2px 0 0; font-size: 14px; line-height: 1.5; white-space: normal; overflow-wrap: anywhere; }
+.note-form { display: grid; grid-template-columns: 78px 1fr auto; gap: 6px; margin-top: 8px; }
+.note-form input { min-width: 0; min-height: 36px; padding: 4px 8px; border: 2px solid var(--line); background: var(--paper); font: inherit; font-size: 16px; }
+.note-form button { padding: 4px 10px; border: 2px solid var(--line); background: var(--accent); color: #fff; box-shadow: 0 2px 0 var(--edge); font: inherit; font-size: 14px; cursor: pointer; }
+.note-form button:active { transform: translate(2px, 2px); box-shadow: none; }
+.note-status { display: block; margin-top: 4px; font-size: 12px; color: var(--muted); }
+.report { margin-left: auto; padding: 4px 2px; background: none; border: 0; font: inherit; font-size: 12px; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.report:disabled { text-decoration: none; cursor: default; }
+.empty { margin-top: 18px; color: var(--muted); }
+
+.mind { display: block; margin-top: 2px; font-size: 12px; line-height: 1.4; color: var(--muted); white-space: normal; }
